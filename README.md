@@ -1,16 +1,15 @@
 # BuenosAires
 ## Installation
-git clone https://github.com/glimow/BuenosAires.git
-cd BuenosAires
-npm install
+  git clone https://github.com/glimow/BuenosAires.git
+  cd BuenosAires
+  npm install
 ## Test du projet
-npm start
+  npm start
 ## Récupération des nouvelles modifications
-git pull
+  git pull
 ## Envoi des modifications
 ### Si des fichiers ont été crées
-git add [nom des fichiers créés]
+  git add [nom des fichiers créés]
 ### Dans tous les cas
-git commit -am "[description des modifications]"
-\n
-git push
+  git commit -am "[description des modifications]"
+  git push
