@@ -12,4 +12,5 @@ git pull
 git add [nom des fichiers créés]
 ### Dans tous les cas
 git commit -am "[description des modifications]"
+\n
 git push
