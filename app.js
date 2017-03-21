@@ -4,23 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var restberry = require('restberry');
+var restberry = require('./models/models.js');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-//API engine setup
-restberry.config({
-    apiPath: '/api/v1',
-    env: 'prod',
-    name: 'BuenosAires'
-    port: 5000,
-})
-
-//using express
-restberry.use('express');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
