@@ -12,7 +12,9 @@
     "ejs": "~2.5.5",
     "emailjs": "^1.0.8",
     "express": "~4.14.1",
+    "mongoose": "^4.9.1",
     "morgan": "~1.7.0",
+    "restberry": "^1.2.0",
     "serve-favicon": "~2.3.2"
   }
 }
