@@ -10,10 +10,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/subscriptions/csv',function(req, res, next) {
-  subscriptions.find(function (err, subscriptions) {
+
+  subscriptions.find()
+  .select({ "_id":0, "name": 1, "firstName": 1, "email": 1 }).where({"state":"validated"})
+  .exec(function (err, subscriptions) {
     if (err) res.json(err);
     subscriptions = JSON.parse(JSON.stringify(subscriptions));
     res.csv(subscriptions);
+  });
+});
+
+router.get('/subscriptions/validation/:id',function(req, res, next) {
+  subscriptions.findOneAndUpdate({_id:req.params.id},{"state":"validated"}, function (err) {
+    if (err) res.json(err);
+    res.json({state:"success"})
   });
 });
 
