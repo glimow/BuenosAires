@@ -4,6 +4,7 @@
     cd BuenosAires
     npm install
 ## Test du projet
+    mongod ./db
     npm start
 ## Récupération des nouvelles modifications
     git pull
