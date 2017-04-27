@@ -4,10 +4,17 @@ var csv = require('express-csv');
 var mongoose = require('mongoose');
 var subscriptions = require('../models/models.js');
 
+
+var projects = [
+	{title:"projet numéro 1", subtitle: "un premier projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},
+	{title:"projet numéro 2", subtitle: "un second projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},	
+];
+
+
 /* GET home page. */
 //here will be the site's main routes that returns HTML and not JSON
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'express' });
+  res.render('index', { title: 'express' , projects: projects});
 });
 
 router.get('/subscriptions/csv',function(req, res, next) {
@@ -28,5 +35,15 @@ router.get('/subscriptions/validation/:id',function(req, res, next) {
     res.json({state:"success"})
   });
 });
+
+
+router.get('/projects',function(req, res, next) {
+    res.json(projects);
+});
+
+router.get('/projects/:id',function(req, res, next) {
+    res.json(projects[req.params.id]);
+});
+
 
 module.exports = router;

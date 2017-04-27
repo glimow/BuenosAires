@@ -3,9 +3,71 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   	<script>
+		$(document).ready(function(){
+			/*
+			$.getJSON( "/projects", function( data ) {
+				  var items = [];
+				  $.each( data, function( key, val ) {
+					items.push( "<li id='" + key + "'>" + val.title + "</li>" );
+				  });
+
+				  $( "<ul/>", {
+					"class": "my-new-list",
+					html: items.join( "" )
+				  }).appendTo( "#listprojets" );
+			});*/
+			
+			
+			
+			
+			$(".itemprojet").click(function(){
+				var id = $(this).data("projetid");
+				
+				
+				console.log(id);
+				$('#projetdetail').addClass('active');
+				
+			});
+		});	
+	  
+	  
+	  </script>
+   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <header>menu de nav...</header>
+    <section>Carousel</section>
+    <section>ACTUS</section>
+    <section>REFERENCES
+    
+    <div id="listprojets">
+    <% for(var i =0; i<projects.length; i++){%>
+    	<div class='itemprojet' data-projetid="<%= i %>">
+    	<h1><%= projects[i].title%></h1>
+    	<h2><%= projects[i].subtitle%></h2>
+    	<p><%= projects[i].text%></p>
+    	<img src="<%= projects[i].image%>" />
+    	</div>
+    <%}%>
+    
+            </div>
+    <div id='projetdetail'>
+    	<h1>TITRE DU PROJET</h1>
+    	<h2>sous TITRE DU PROJET</h2>
+
+		<div id='contenu'></div>
+   		<div id="mosaique">
+   			
+   			
+   		</div>
+    	
+    </div>
+    
+    
+    </section>
+    <section>A PROPOS</section>
+    <section>nexsletter</section>
+<footer><% include ./footer.ejs %></footer>
+        </body>
 </html>
