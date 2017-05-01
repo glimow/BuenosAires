@@ -4,7 +4,18 @@
     cd BuenosAires
     npm install
 ## Test du projet
+Le projet tente de démarrer mongod par lui même à chaque démarrage. Si cela ne fonctionne pas, il peut être lancé manuellement
+
+    mongod ./db
+
+Lancer le projet (si nodemon est installé) :
+
+    nodemon
+
+Lancer le projet sans nodemon
+
     npm start
+    
 ## Récupération des nouvelles modifications
     git pull
 ## Envoi des modifications

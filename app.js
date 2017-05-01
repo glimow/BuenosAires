@@ -10,6 +10,15 @@ var mongoose = require('mongoose');
 //Mongoose config, mongoose is used to speak to the database (MongoDB)
 mongoose.Promise = global.Promise;
 
+
+//Trying to launch mongodb :
+var sys = require('sys')
+var exec = require('child_process').exec;
+try {
+function puts(error, stdout, stderr) { sys.puts(stdout) }
+exec("mongod -dbpath ./db", puts);
+} catch(err) {console.log("Failed to start mongod daemon, is it already running ? \n Error :", err)}
+
 var index = require('./routes/index');
 var api = require('./routes/api');
 

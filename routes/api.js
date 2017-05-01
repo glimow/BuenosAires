@@ -5,7 +5,7 @@ var subscriptions = require('../models/models.js');
 var email=require("emailjs/email");
 var server=email.server.connect({
   user:"kalos",
-  password:"",
+  password:"Eipoh8Ei",
   host: "zemail.ensta.fr",
   ssl: true,
 });
@@ -16,12 +16,12 @@ var server=email.server.connect({
 
 function send_an_email(subscription){
   server.send({
-    text: "Merci pour votre inscription à la newsletter. Pour terminer votre inscription veuillez copier coller ce lien dans votre navigateur : http://192.168.0.67:3000/subscriptions/validation/"+subscription._id,
+    text: "Merci pour votre inscription à la newsletter. Pour terminer votre inscription veuillez copier coller ce lien dans votre navigateur : http://localhost:3000/subscriptions/validation/"+subscription._id,
     from: "Buenos Aires <tristan.kalos@ensta.fr>",
     to: subscription.firstName + " " + subscription.name + " <"+subscription.email+">",
     subject: "Finalisation de votre inscription à la newsletter",
     attachement:
-    [{data:"<html>Merci pour votre inscription à la newsletter. Pour terminer votre inscription veuillez cliquer sur ce lien : <a href='http://192.168.0.67:3000/subscriptions/validation/"+subscription._id+"'>Finaliser votre inscription</a></html>", alternative:true},]
+    [{data:"<html>Merci pour votre inscription à la newsletter. Pour annuler votre inscription veuillez cliquer sur ce lien : <a href='http://192.168.0.67:3000/subscriptions/delete/"+subscription._id+"'>Annuler votre inscription</a></html>", alternative:true},]
   }, function(err, message) { console.log(err || message); });
 
 }
