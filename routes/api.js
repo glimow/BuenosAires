@@ -4,29 +4,11 @@ var mongoose = require('mongoose');
 var models = require('../models/models.js');
 var subscriptions = models.subscriptions;
 var projects = models.projects ;
-var email=require("emailjs/email");
-var server=email.server.connect({
-  user:"kalos",
-  password:"",
-  host: "zemail.ensta.fr",
-  ssl: true,
-});
-
 //Here we are going to define our REST api : get all subscriptions, post one subscription,
 //update one subscription, delete one subscription
 
 
-function send_an_email(subscription){
-  server.send({
-    text: "Merci pour votre inscription à la newsletter. Pour annuler votre inscription veuillez copier coller ce lien dans votre navigateur : http://localhost:3000/subscriptions/delete/"+subscription._id,
-    from: "Buenos Aires <tristan.kalos@ensta.fr>",
-    to: " <"+subscription.email+">",
-    subject: "Finalisation de votre inscription à la newsletter",
-    attachement:
-    [{data:"<html>Merci pour votre inscription à la newsletter. Pour annuler votre inscription veuillez cliquer sur ce lien : <a href='http://192.168.0.67:3000/subscriptions/delete/"+subscription._id+"'>Annuler votre inscription</a></html>", alternative:true},]
-  }, function(err, message) { console.log(err || message); });
 
-}
 // TODO : authentification
 /* GET users listing. */
 router.get('/subscriptions', function(req, res, next) {

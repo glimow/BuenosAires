@@ -18,21 +18,21 @@
 					html: items.join( "" )
 				  }).appendTo( "#listprojets" );
 			});*/
-			
-			
-			
-			
+
+
+
+
 			$(".itemprojet").click(function(){
 				var id = $(this).data("projetid");
-				
-				
+
+
 				console.log(id);
 				$('#projetdetail').addClass('active');
-				
+
 			});
-		});	
-	  
-	  
+		});
+
+
 	  </script>
    </head>
   <body>
@@ -40,7 +40,7 @@
     <section>Carousel</section>
     <section>ACTUS</section>
     <section>REFERENCES
-    
+
     <div id="listprojets">
     <% for(var i =0; i<projects.length; i++){%>
     	<div class='itemprojet' data-projetid="<%= i %>">
@@ -50,7 +50,7 @@
     	<img src="<%= projects[i].image%>" />
     	</div>
     <%}%>
-    
+
             </div>
     <div id='projetdetail'>
     	<h1>TITRE DU PROJET</h1>
@@ -58,16 +58,22 @@
 
 		<div id='contenu'></div>
    		<div id="mosaique">
-   			
-   			
+
+
    		</div>
-    	
+
     </div>
-    
-    
+
+
     </section>
     <section>A PROPOS</section>
-    <section>nexsletter</section>
+    <section>newsletter
+		<form class="email" action="/subscribe" method="post">
+			<input type="email" name="email" placeholder="jean.dupont@mail.fr" value="">
+			<button type="submit" name="button">Souscire à la newsletter</button>
+
+		</form>
+	</section>
 <footer><% include ./footer.ejs %></footer>
         </body>
 </html>

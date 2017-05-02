@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var csv = require('express-csv');
 var mongoose = require('mongoose');
-var subscriptions = require('../models/models.js');
-
+var models = require('../models/models');
+var subscriptions = models.subscriptions;
+var utils = require('../utils.js');
 
 var projects = [
 	{title:"projet numéro 1", subtitle: "un premier projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},
@@ -33,6 +34,22 @@ router.get('/subscriptions/validation/:id',function(req, res, next) {
   subscriptions.findOneAndUpdate({_id:req.params.id},{"state":"validated"}, function (err) {
     if (err) res.json(err);
     res.json({state:"success"})
+  });
+});
+
+router.post('/contact',function(req, res, next) {
+
+	req.body //=> infos du formulaire pour poster
+    if (err) res.json(err);
+    res.json({state:"success"})
+
+});
+
+router.post('/subscribe', function(req, res, next) {
+  subscriptions.create(req.body, function (err, subscription) {
+    if (err) res.json(err);
+    utils.send_an_email(subscription);
+    res.json(subscription);
   });
 });
 
