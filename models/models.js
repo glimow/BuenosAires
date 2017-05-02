@@ -17,8 +17,6 @@ var states = [
 ];
 
 var subscriptionSchema = new mongoose.Schema({
-        firstName: {type: String, required: true},
-        name: {type: String, required: true},
         email: {type: String, required: true, unique:true},
         date: {type: Date, default: Date.now},
         //states are used to determines if user have confirmed / has unsuscripted
@@ -26,4 +24,13 @@ var subscriptionSchema = new mongoose.Schema({
         state: {type: String, enum: states ,default:'awaiting'},
   });
 
-module.exports = mongoose.model('subscription', subscriptionSchema);
+var projectSchema = new mongoose.Schema({
+	title : {type :String, required : true},
+	subtitle : {type : String},
+	description : {type : String, required :true},
+	image : {data : Buffer, contentType : String },
+	gallery : [{data : Buffer, contentType : String}],
+});
+
+module.exports = {subscriptions : mongoose.model('subscriptions', subscriptionSchema) ,
+projects : mongoose.models('projects', projectSchema)};
