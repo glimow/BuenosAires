@@ -25,9 +25,12 @@ var authenticate = function (req, res, next) {
 
 
 var viewCounter = function (req, res , next){
-	next();
+
 	var count = metas.getData("/stats/nb-visites");
+	count++
 	metas.push("/stats/nb-visites", count);
+	console.log(count);
+	next();
 };
 
 //Trying to launch mongodb :
@@ -54,7 +57,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(viewCounter);
 
 app.use('/', index);
 app.use(authenticate);
