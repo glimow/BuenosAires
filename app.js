@@ -25,12 +25,10 @@ var authenticate = function (req, res, next) {
 
 
 var viewCounter = function (req, res , next){
-
+	next();
 	var count = metas.getData("/stats/nb-visites");
 	count++
 	metas.push("/stats/nb-visites", count);
-	console.log(count);
-	next();
 };
 
 //Trying to launch mongodb :

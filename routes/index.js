@@ -48,8 +48,11 @@ router.post('/contact',function(req, res, next) {
 router.post('/subscribe', function(req, res, next) {
   subscriptions.create(req.body, function (err, subscription) {
     if (err) res.json(err);
-    utils.send_an_email(subscription);
-    res.json(subscription);
+	//utils.send_an_email(subscription);
+	console.log("pass");
+	console.log(subscription);
+	res.redirect('/validation');
+	//res.render('validation')
   });
 });
 
