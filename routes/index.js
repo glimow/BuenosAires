@@ -47,12 +47,13 @@ router.post('/contact',function(req, res, next) {
 
 router.post('/subscribe', function(req, res, next) {
   subscriptions.create(req.body, function (err, subscription) {
-    if (err) res.json(err);
-	//utils.send_an_email(subscription);
-	console.log("pass");
-	console.log(subscription);
-	res.redirect('/validation');
-	//res.render('validation')
+    if (err) {res.json(err)} else {
+		console.log("pass");
+		console.log(subscription);
+		//res.redirect('/');
+		utils.send_an_email(subscription);
+		res.render('validation')
+	}
   });
 });
 

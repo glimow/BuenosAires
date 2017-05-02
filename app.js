@@ -16,10 +16,10 @@ mongoose.Promise = global.Promise;
 var authenticate = function (req, res, next) {
 	if (req.get("authorization")==token) {
 		console.log('Request authenticated');
-		next();
+		 return next();
 	} else {
 		console.log('Access Denied')
-		res.json({error:{title:"authentification failed",text:"invalid credentials"}});
+		return next({error:{title:"authentification failed",text:"invalid credentials"}});
 	}
 };
 
