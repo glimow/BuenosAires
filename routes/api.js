@@ -18,7 +18,7 @@ var server=email.server.connect({
 
 function send_an_email(subscription){
   server.send({
-    text: "Merci pour votre inscription à la newsletter. Pour annuler votre inscription veuillez copier coller ce lien dans votre navigateur : http://localhost:3000/subscriptions/validation/"+subscription._id,
+    text: "Merci pour votre inscription à la newsletter. Pour annuler votre inscription veuillez copier coller ce lien dans votre navigateur : http://localhost:3000/subscriptions/delete/"+subscription._id,
     from: "Buenos Aires <tristan.kalos@ensta.fr>",
     to: " <"+subscription.email+">",
     subject: "Finalisation de votre inscription à la newsletter",

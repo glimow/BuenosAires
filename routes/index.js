@@ -7,7 +7,7 @@ var subscriptions = require('../models/models.js');
 
 var projects = [
 	{title:"projet numéro 1", subtitle: "un premier projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},
-	{title:"projet numéro 2", subtitle: "un second projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},	
+	{title:"projet numéro 2", subtitle: "un second projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},
 ];
 
 

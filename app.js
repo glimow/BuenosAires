@@ -9,7 +9,6 @@ var JsonDB = require('node-json-db');
 //var restberry = require('./models/models.js');
 var metas = new JsonDB("metaDataBase", true, true);
 
-
 var token = metas.getData("/authentication/token");
 //Mongoose config, mongoose is used to speak to the database (MongoDB)
 mongoose.Promise = global.Promise;
@@ -20,7 +19,7 @@ var authenticate = function (req, res, next) {
 		next();
 	} else {
 		console.log('Access Denied')
-		res.json(Error({title:"authentification failed",text:"invalid credentials"}));
+		res.json({error:{title:"authentification failed",text:"invalid credentials"}});
 	}
 };
 

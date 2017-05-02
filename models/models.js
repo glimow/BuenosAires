@@ -19,9 +19,6 @@ var states = [
 var subscriptionSchema = new mongoose.Schema({
         email: {type: String, required: true, unique:true},
         date: {type: Date, default: Date.now},
-        //states are used to determines if user have confirmed / has unsuscripted
-        //to the newsletter
-        state: {type: String, enum: states ,default:'awaiting'},
   });
 
 var projectSchema = new mongoose.Schema({
@@ -30,9 +27,8 @@ var projectSchema = new mongoose.Schema({
 	description : {type : String, required :true},
 	image : {data : Buffer, contentType : String },
 	gallery : [{data : Buffer, contentType : String}],
-	created_at : {type: Date, default: Date.now()};
-	updated_at : {type: Date, default: Date.now()};
-
+	created_at : {type: Date, default: Date.now()},
+	updated_at : {type: Date, default: Date.now()},
 });
 
 projectSchema.virtual("created_at_display")
