@@ -7,7 +7,7 @@ var projects = models.projects ;
 var email=require("emailjs/email");
 var server=email.server.connect({
   user:"kalos",
-  password:"Eipoh8Ei",
+  password:"",
   host: "zemail.ensta.fr",
   ssl: true,
 });

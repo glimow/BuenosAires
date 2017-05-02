@@ -30,7 +30,16 @@ var projectSchema = new mongoose.Schema({
 	description : {type : String, required :true},
 	image : {data : Buffer, contentType : String },
 	gallery : [{data : Buffer, contentType : String}],
+	created_at : {type: Date, default: Date.now()};
+	updated_at : {type: Date, default: Date.now()};
+
 });
 
+projectSchema.virtual("created_at_display")
+	.get(function() {
+		time = new Date(this.created_at).toLocaleDateString();
+		return time;
+	})
+
 module.exports = {subscriptions : mongoose.model('subscriptions', subscriptionSchema) ,
-projects : mongoose.models('projects', projectSchema)};
+projects : mongoose.model('projects', projectSchema)};

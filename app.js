@@ -5,18 +5,31 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var JsonDB = require('node-json-db');
 //var restberry = require('./models/models.js');
+var metas = new JsonDB("metaDataBase", true, true);
 
+
+var token = metas.getData("/authentication/token");
 //Mongoose config, mongoose is used to speak to the database (MongoDB)
 mongoose.Promise = global.Promise;
 
+var authenticate = function (req, res, next) {
+	if (req.get("authorization")==token) {
+		console.log('Request authenticated');
+		next();
+	} else {
+		console.log('Access Denied')
+		res.json(Error({title:"authentification failed",text:"invalid credentials"}));
+	}
+};
 
 //Trying to launch mongodb :
 var sys = require('sys')
 var exec = require('child_process').exec;
 try {
 function puts(error, stdout, stderr) { sys.puts(stdout) }
-exec("mongod -dbpath ./db", puts);
+exec("mongod -dbpath ./db > /dev/null", puts);
 } catch(err) {console.log("Failed to start mongod daemon, is it already running ? \n Error :", err)}
 
 var index = require('./routes/index');
@@ -35,6 +48,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(authenticate);
 
 app.use('/', index);
 app.use('/api/v1', api);
