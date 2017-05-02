@@ -54,8 +54,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+<<<<<<< HEAD
 
 app.use(viewCounter);
+=======
+>>>>>>> 05e02669895da4a00e55152d567bb6285947123c
 
 app.use('/', index);
 app.use(authenticate);
