@@ -23,6 +23,13 @@ var authenticate = function (req, res, next) {
 	}
 };
 
+
+var viewCounter = function (req, res , next){
+	next();
+	var count = metas.getData("/stats/nb-visites");
+	metas.push("/stats/nb-visites", count);
+};
+
 //Trying to launch mongodb :
 var sys = require('sys')
 var exec = require('child_process').exec;
@@ -47,9 +54,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(authenticate);
+
+app.use(viewCounter);
 
 app.use('/', index);
+app.use(authenticate);
 app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
