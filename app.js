@@ -27,6 +27,7 @@ var authenticate = function (req, res, next) {
 var viewCounter = function (req, res , next){
 	next();
 	var count = metas.getData("/stats/nb-visites");
+	console.log(count);
 	metas.push("/stats/nb-visites", count);
 };
 
