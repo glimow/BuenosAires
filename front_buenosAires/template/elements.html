@@ -30,17 +30,6 @@
               <i class="lnr lnr-arrow-left-circle"></i>
             </button>
           </div>
-          <form class="navbar-form navbar-left">
-            <div class="input-group">
-              <input type="text" value="" class="form-control" placeholder="Search dashboard...">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-primary">Go</button>
-              </span>
-            </div>
-          </form>
-          <div class="navbar-btn navbar-btn-right">
-            <a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&amp;utm_medium=template&amp;utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-          </div>
           <div id="navbar-menu">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
@@ -83,23 +72,6 @@
                   </li>
                   <li>
                     <a href="#">Troubleshooting</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a>
                   </li>
                 </ul>
               </li>
@@ -164,16 +136,12 @@
       <!-- MAIN -->
       <div class="main">
         <!-- MAIN CONTENT -->
-        <div class="main-content">
+        <div class="main-content" id="projects">
           <div class="container-fluid">
             <h3 class="page-title">Gestion des projets</h3>
+
             <div class="row">
-              <div class="col-md-8">
-                <!-- BUTTONS -->
-                <!-- END BUTTONS -->
-                <!-- INPUTS -->
-                <!-- END INPUTS -->
-                <!-- INPUT SIZING -->
+              <div class="col-md-8" v-if="state == 'new'">
                 <div class="panel">
                   <div class="panel-heading">
                     <h3 class="panel-title">Ajouter un projet</h3>
@@ -186,10 +154,75 @@
                     <textarea class="form-control" placeholder="Entrez un texte de description" type="text" style="height:20em;"></textarea>
                     <br>
                   </div>
+                  <div class="panel-footer text-right">
+                    <button class="btn btn-primary" @click="saveNewProject">Ajouter le projet</button>
+                    <button class="btn btn-danger" @click="getBack">Annuler</button>
+                  </div>
                 </div>
                 <!-- END INPUT SIZING -->
               </div>
             </div>
+			<div class="row">
+			<transition name="fade">
+			  <div class="col-md-8" v-if="state == 'edit'">
+				<div class="panel">
+				  <div class="panel-heading">
+					<h3 class="panel-title">Editer un projet</h3>
+				  </div>
+				  <div class="panel-body">
+					<input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-bind="editedProject.title">
+					<br>
+					<input class="form-control" placeholder="Sous-titre" type="text" v-bind="editedProject.subtitle">
+					<br>
+					<textarea class="form-control" placeholder="Entrez un texte de description" type="text" v-bind="editedProject.description"style="height:20em;"></textarea>
+					<br>
+				  </div>
+				  <div class="panel-footer text-right">
+					<button class="btn btn-primary" @click="saveEditedProject">Enregistrer</button>
+					<button class="btn btn-danger" @click="getBack">Annuler</button>
+				  </div>
+				</div>
+				<!-- END INPUT SIZING -->
+			  </div>
+		  </transition>
+			</div>
+
+			<div class="row">
+				<transition name="fade">
+				<div class="col-md-8" v-if="state == 'list'" transition="fade" transition-mode="out-in">
+					<!-- TODO LIST -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">Projets enregistrés</h3>
+							<div class="right">
+
+							</div>
+						</div>
+						<div class="panel-body">
+							<input class="form-control input-lg" placeholder="Chercher un projet" type="text">
+							<hr>
+							<ul class="list-unstyled project-list" v-on:click="editProject">
+								<li v-for="project in projects">
+									<label class="control-inline fancy-image">
+										<img src="assets/img/user2.png" alt="Avatar" class="pull-left avatar">
+									</label>
+									<p>
+										<span class="title">{{project.title}}</span>
+										<span class="short-description">{{project.subtitle}}</span>
+										<span class="date">{{project.last_update}}</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-4">
+					</div>
+					<!-- END TODO LIST -->
+				</div>
+			</transition>
+					<!-- END TIMELINE -->
+				</div>
+			</div>
           </div>
         </div>
         <!-- END MAIN CONTENT -->
@@ -209,6 +242,9 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="assets/scripts/klorofil-common.js"></script>
-  
+	<script src="https://unpkg.com/vue"></script>
+	<script src="./app.js"></script>
+
+
 
 </body></html>

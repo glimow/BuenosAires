@@ -865,6 +865,63 @@ ul.activity-list > li {
   .todo-list .controls a {
     margin-left: 5px; }
 
+
+.project-list > li {
+  border-top: 1px solid #F0F0F0;
+  position: relative; }
+.project-list > li:first-child {
+    border-top: none; }
+.project-list > li .fancy-image {
+    position: absolute;
+    top: 50%;
+    margin-top: -32px;
+	margin-left: 1em; }
+.project-list > li .fancy-checkbox input[type="checkbox"] + span {
+       }
+.project-list > li p {
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom: 1;
+    *display: inline;
+    width: 90%;
+    margin: 0;
+    padding: 20px 0 20px 6em; }
+.project-list > li.completed p,
+.project-list > li.completed .date {
+    text-decoration: line-through;
+    color: #b4b7b9; }
+
+.project-list .title {
+  font-size: 16px;
+  font-weight: 600; }
+
+.project-list .short-description {
+  display: block;
+  margin-top: 5px; }
+
+.project-list .date {
+  font-size: 13px;
+  color: #a3a3a3; }
+
+.project-list {
+	margin-left: -2em;
+	margin-right: -2em;
+}
+
+.project-list .controls {
+  float: right;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -11px; }
+  .project-list .controls a {
+    margin-left: 5px; }
+
+.project-list > li:hover {
+	background-color:#eee;
+}
+
 /* toastr notification */
 #toast-container > div {
   opacity: 0.9;
@@ -1767,4 +1824,12 @@ ul.activity-timeline > li {
     width: 22px;
     border: 1px solid #CCC; }
 
+
+.fade-transition {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
 /*# sourceMappingURL=main.css.map */
