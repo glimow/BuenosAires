@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -147,11 +148,11 @@
                     <h3 class="panel-title">Ajouter un projet</h3>
                   </div>
                   <div class="panel-body">
-                    <input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text">
+                    <input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-model="newProject.title">
                     <br>
-                    <input class="form-control" placeholder="Sous-titre" type="text">
+                    <input class="form-control" placeholder="Sous-titre" type="text" v-model="newProject.subtitle">
                     <br>
-                    <textarea class="form-control" placeholder="Entrez un texte de description" type="text" style="height:20em;"></textarea>
+                    <textarea class="form-control" placeholder="Entrez un texte de description" type="text" style="height:20em;" v-model="newProject.description"></textarea>
                     <br>
                   </div>
                   <div class="panel-footer text-right">
@@ -161,20 +162,19 @@
                 </div>
                 <!-- END INPUT SIZING -->
               </div>
-            </div>
-			<div class="row">
+
 			<transition name="fade">
-			  <div class="col-md-8" v-if="state == 'edit'">
+			  <div class="col-md-8" v-if="state == 'edit'" transition="fade" transition-mode="out-in">
 				<div class="panel">
 				  <div class="panel-heading">
 					<h3 class="panel-title">Editer un projet</h3>
 				  </div>
 				  <div class="panel-body">
-					<input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-bind="editedProject.title">
+					<input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-model="editedProject.title">
 					<br>
-					<input class="form-control" placeholder="Sous-titre" type="text" v-bind="editedProject.subtitle">
+					<input class="form-control" placeholder="Sous-titre" type="text" v-model="editedProject.subtitle">
 					<br>
-					<textarea class="form-control" placeholder="Entrez un texte de description" type="text" v-bind="editedProject.description"style="height:20em;"></textarea>
+					<textarea class="form-control" placeholder="Entrez un texte de description" type="text" v-model="editedProject.description" style="height:20em;"></textarea>
 					<br>
 				  </div>
 				  <div class="panel-footer text-right">
@@ -185,9 +185,7 @@
 				<!-- END INPUT SIZING -->
 			  </div>
 		  </transition>
-			</div>
 
-			<div class="row">
 				<transition name="fade">
 				<div class="col-md-8" v-if="state == 'list'" transition="fade" transition-mode="out-in">
 					<!-- TODO LIST -->
@@ -195,14 +193,14 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Projets enregistrés</h3>
 							<div class="right">
-
+								<button class="btn btn-primary" v-on:click="changeState('new')">Nouveau projet</button>
 							</div>
 						</div>
 						<div class="panel-body">
-							<input class="form-control input-lg" placeholder="Chercher un projet" type="text">
+							<input class="form-control input-lg" placeholder="Chercher un projet" type="text" v-model="searchString">
 							<hr>
-							<ul class="list-unstyled project-list" v-on:click="editProject">
-								<li v-for="project in projects">
+							<ul class="list-unstyled project-list">
+								<li v-for="(project, index) in projects" v-on:click="editProject(''+ index)" v-if="isSearched(project)">
 									<label class="control-inline fancy-image">
 										<img src="assets/img/user2.png" alt="Avatar" class="pull-left avatar">
 									</label>
@@ -241,7 +239,8 @@
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="assets/scripts/klorofil-common.js"></script>
+	<script src="assets/vendor/toastr/toastr.min.js"></script>
+	<script src="assets/scripts/klorofil-common.js"></script>
 	<script src="https://unpkg.com/vue"></script>
 	<script src="./app.js"></script>
 
