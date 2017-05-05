@@ -72,7 +72,7 @@ var app = new Vue({
 
 		getProjects: function(){
 			this.$http.headers.common.Authorization = 'authentication-QWxhZGRpbjpvcGVuIHNlc2FtZQ';
-			this.$http.get('projects').then(response => {
+			this.$http.get('projects',{headers: {'Authorization': 'Basic YXBpOnBhc3N3b3Jk'}}).then(response => {
 			  console.log(response.json());
 			}, response => {
 			  console.log(response);
