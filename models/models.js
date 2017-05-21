@@ -27,8 +27,8 @@ var projectSchema = new mongoose.Schema({
 	description : {type : String, required :true},
 	image : {data : Buffer, contentType : String },
 	gallery : [{data : Buffer, contentType : String}],
-	created_at : {type: Date, default: Date.now()},
-	updated_at : {type: Date, default: Date.now()},
+},
+  {timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 
 projectSchema.virtual("created_at_display")

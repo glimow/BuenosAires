@@ -143,8 +143,9 @@
             <h3 class="page-title">Gestion des projets</h3>
 
             <div class="row">
-              <div class="col-md-8 animated" v-if="state == 'new'" key="new" transition="fade">
-                <div class="panel">
+              <div class="col-md-8" >
+                <transition name="fade" mode="out-in">
+                <div class="panel" v-if="state == 'new'" key="new">
                   <div class="panel-heading">
                     <h3 class="panel-title">Ajouter un projet</h3>
                   </div>
@@ -162,10 +163,7 @@
                   </div>
                 </div>
                 <!-- END INPUT SIZING -->
-              </div>
-
-			  <div class="col-md-8" v-if="state == 'edit'" key="edit" transition="fade">
-				<div class="panel">
+				<div class="panel" v-if="state == 'edit'" key="edit">
 				  <div class="panel-heading">
 					<h3 class="panel-title">Editer un projet</h3>
 				  </div>
@@ -179,16 +177,12 @@
 				  </div>
 				  <div class="panel-footer text-right">
 					<button class="btn btn-primary" @click="saveEditedProject">Enregistrer</button>
-					<button class="btn btn-danger" @click="getBack">Annuler</button>
+					<button class="btn" @click="getBack">Annuler</button>
 				  </div>
 				</div>
 				<!-- END INPUT SIZING -->
-			  </div>
-
-
-				<div class="col-md-8" v-if="state == 'list'" key="list" transition="fade">
 					<!-- TODO LIST -->
-					<div class="panel">
+					<div class="panel" v-if="state == 'list'" key="list">
 						<div class="panel-heading">
 							<h3 class="panel-title">Projets enregistrés</h3>
 							<div class="right">
@@ -212,11 +206,11 @@
 							</ul>
 						</div>
 					</div>
+          </transition>
 					<!-- END TODO LIST -->
 				</div>
 			<div class="col-md-4">
 			</div>
-
 					<!-- END TIMELINE -->
 				</div>
 			</div>
@@ -233,6 +227,16 @@
         </div>
       </footer>
     </div>
+    <style media="screen">
+
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .2s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+      opacity: 0
+    }
+
+    </style>
     <!-- END WRAPPER -->
     <!-- Javascript -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>

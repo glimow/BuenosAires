@@ -922,6 +922,13 @@ ul.activity-list > li {
 	background-color:#eee;
 }
 
+.project-list button {
+  display:none;
+}
+
+.project-list > li:hover button {
+  display:inline-block;
+}
 /* toastr notification */
 #toast-container > div {
   opacity: 0.9;
