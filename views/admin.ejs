@@ -24,7 +24,7 @@
 
 <body>
 	<!-- WRAPPER -->
-	<div id="wrapper">
+  <div id="app" class="wrapper">
 	   <% include ./navbar %>
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
@@ -34,23 +34,40 @@
 		</div>
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
-    <div id="app" class="wrapper">
 
   		<div class="main">
   			<!-- MAIN CONTENT -->
   			<div class="main-content">
   				<div class="container-fluid">
-
+            <transition name="component-fade" mode="out-in">
+              <router-view></router-view>
+            </transition>
 
   				</div>
   			</div>
   			<!-- END MAIN CONTENT -->
   		</div>
+      <template id="index-template">
+        <div class="">
+          <% include stats %>
+        </div>
+      </template>
+
+      <template id="projects-template">
+        <div class="">
+          <% include projects %>
+        </div>
+      </template>
+
+      <template id="subscriptions-template">
+        <div class="">
+          <% include subscriptions %>
+        </div>
+      </template>
     </div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<% include ./footer %>
-	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
