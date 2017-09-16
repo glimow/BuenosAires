@@ -48,6 +48,29 @@ router.delete('/subscriptions/:id', function(req, res, next) {
   });
 });
 
+/*Get statistics for the home page*/
+router.get('/stats', function(req, res, next) {
+  subscriptions.find(function(err, subscriptions) {
+    projects.find(function(err, projects) {
+      var images = 0;
+      projects.forEach(function (projet, index){
+        images += projet.gallery.length ;
+      });
+      stats = {
+        "projects": projects.length,
+        "images" : images,
+        "subscriptions" : subscriptions.length,
+      }
+      if (err) {
+        res.json({state:"error", err:err});
+        console.log(err);
+      } else {
+        res.json(stats);
+      }
+    });
+  });
+});
+
 /* GET project listing. */
 router.get('/projects', function(req, res, next) {
   projects.find().sort("created_at").exec(function (err, projects) {

@@ -88,50 +88,7 @@
       <!-- LEFT SIDEBAR -->
       <div id="sidebar-nav" class="sidebar">
         <div class="sidebar-scroll">
-          <nav>
-            <ul class="nav">
-              <li>
-                <a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
-              </li>
-              <li>
-                <a href="elements.html" class="active"><i class="lnr lnr-code"></i> <span>Elements</span></a>
-              </li>
-              <li>
-                <a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a>
-              </li>
-              <li>
-                <a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a>
-              </li>
-              <li>
-                <a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a>
-              </li>
-              <li>
-                <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                <div id="subPages" class="collapse ">
-                  <ul class="nav">
-                    <li>
-                      <a href="page-profile.html" class="">Profile</a>
-                    </li>
-                    <li>
-                      <a href="page-login.html" class="">Login</a>
-                    </li>
-                    <li>
-                      <a href="page-lockscreen.html" class="">Lockscreen</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li>
-                <a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a>
-              </li>
-              <li>
-                <a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a>
-              </li>
-              <li>
-                <a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a>
-              </li>
-            </ul>
-          </nav>
+          
         </div>
       </div>
       <!-- END LEFT SIDEBAR -->
@@ -142,70 +99,12 @@
           <div class="container-fluid">
             <h3 class="page-title">Gestion des projets</h3>
 
-            <div class="row">
-              <div class="col-md-8" >
-                <transition name="fade" mode="out-in">
-                <div class="panel" v-if="state == 'new'" key="new">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Ajouter un projet</h3>
-                  </div>
-                  <div class="panel-body">
-                    <input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-model="newProject.title">
-                    <br>
-                    <input class="form-control" placeholder="Sous-titre" type="text" v-model="newProject.subtitle">
-                    <br>
-                    <textarea class="form-control" placeholder="Entrez un texte de description" type="text" style="height:20em;" v-model="newProject.description"></textarea>
-                    <br>
-                  </div>
-                  <div class="panel-footer text-right">
-                    <button class="btn btn-primary" @click="saveNewProject">Ajouter le projet</button>
-                    <button class="btn btn-danger" @click="getBack">Annuler</button>
-                  </div>
-                </div>
+
                 <!-- END INPUT SIZING -->
-				<div class="panel" v-if="state == 'edit'" key="edit">
-				  <div class="panel-heading">
-					<h3 class="panel-title">Editer un projet</h3>
-				  </div>
-				  <div class="panel-body">
-					<input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-model="editedProject.title">
-					<br>
-					<input class="form-control" placeholder="Sous-titre" type="text" v-model="editedProject.subtitle">
-					<br>
-					<textarea class="form-control" placeholder="Entrez un texte de description" type="text" v-model="editedProject.description" style="height:20em;"></textarea>
-					<br>
-				  </div>
-				  <div class="panel-footer text-right">
-					<button class="btn btn-primary" @click="saveEditedProject">Enregistrer</button>
-					<button class="btn" @click="getBack">Annuler</button>
-				  </div>
-				</div>
+
 				<!-- END INPUT SIZING -->
 					<!-- TODO LIST -->
-					<div class="panel" v-if="state == 'list'" key="list">
-						<div class="panel-heading">
-							<h3 class="panel-title">Projets enregistrés</h3>
-							<div class="right">
-								<button class="btn btn-primary" v-on:click="changeState('new')">Nouveau projet</button>
-							</div>
-						</div>
-						<div class="panel-body">
-							<input class="form-control input-lg" placeholder="Chercher un projet" type="text" v-model="searchString">
-							<hr>
-							<ul class="list-unstyled project-list">
-								<li v-for="(project, index) in projects" v-on:click="editProject(''+ index)" v-if="isSearched(project)">
-									<label class="control-inline fancy-image">
-										<img src="assets/img/user2.png" alt="Avatar" class="pull-left avatar">
-									</label>
-									<p>
-										<span class="title">{{project.title}}</span>
-										<span class="short-description">{{project.subtitle}}</span>
-										<span class="date">{{project.last_update}}</span>
-									</p>
-								</li>
-							</ul>
-						</div>
-					</div>
+
           </transition>
 					<!-- END TODO LIST -->
 				</div>
