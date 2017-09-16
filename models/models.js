@@ -21,6 +21,14 @@ var subscriptionSchema = new mongoose.Schema({
         date: {type: Date, default: Date.now},
   });
 
+/**
+* Represents a project Schema
+* @constructor
+* @param {string}  title - the title of the project, required
+* @param {string}  subtitle - self-explanatory
+* @param {string}  description - description of the project - required
+* @param {Object}  image - Buffer {String}
+*/
 var projectSchema = new mongoose.Schema({
 	title : {type :String, required : true},
 	subtitle : {type : String},
