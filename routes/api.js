@@ -1,12 +1,13 @@
-var express = require('express');
+const express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var models = require('../models/models.js');
-var subscriptions = models.subscriptions;
-var projects = models.projects ;
+const mongoose = require('mongoose');
+const crate = require('mongoose-crate')
+const LocalFS = require('mongoose-crate-localfs')
+const models = require('../models/models.js');
+const subscriptions = models.subscriptions;
+const projects = models.projects ;
 //Here we are going to define our REST api : get all subscriptions, post one subscription,
 //update one subscription, delete one subscription
-
 
 
 // TODO : authentification

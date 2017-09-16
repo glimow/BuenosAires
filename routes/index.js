@@ -66,5 +66,8 @@ router.get('/projects/:id',function(req, res, next) {
     res.json(projects[req.params.id]);
 });
 
+router.get('/admin', function(req, res, next){
+		res.render("admin");
+});
 
 module.exports = router;
