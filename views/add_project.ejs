@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-8" >
+    <transition name="fade" mode="out-in">
+    <div class="panel" v-if="state == 'new'" key="new">
+      <div class="panel-heading">
+        <h3 class="panel-title">Ajouter un projet</h3>
+      </div>
+      <div class="panel-body">
+        <input class="form-control input-lg" placeholder="Entrez un titre pour le nouveau projet" type="text" v-model="newProject.title">
+        <br>
+        <input class="form-control" placeholder="Sous-titre" type="text" v-model="newProject.subtitle">
+        <br>
+        <textarea class="form-control" placeholder="Entrez un texte de description" type="text" style="height:20em;" v-model="newProject.description"></textarea>
+        <br>
+      </div>
+      <div class="panel-footer text-right">
+        <button class="btn btn-primary" @click="saveNewProject">Ajouter le projet</button>
+        <button class="btn btn-danger" @click="getBack">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
