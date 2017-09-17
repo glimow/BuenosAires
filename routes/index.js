@@ -6,16 +6,13 @@ var models = require('../models/models');
 var subscriptions = models.subscriptions;
 var utils = require('../utils.js');
 
-var projects = [
-	{title:"projet numéro 1", subtitle: "un premier projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},
-	{title:"projet numéro 2", subtitle: "un second projet de l'agence", text:"lorem ipsum sed dolor inut", image:"monimage.png", images: [{img:"project1.png",thumbnail:"project1-thumb.png"}]},
-];
-
 
 /* GET home page. */
 //here will be the site's main routes that returns HTML and not JSON
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'express' , projects: projects});
+	models.projects.find().exec(function(err, projects){
+		res.render('index', { title: 'express' , projects: projects});
+	});
 });
 
 router.get('/subscriptions/csv',function(req, res, next) {
@@ -67,7 +64,7 @@ router.get('/projects/:id',function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next){
-		res.render("admin");
+		res.render("admin",{});
 });
 
 module.exports = router;

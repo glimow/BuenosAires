@@ -24,7 +24,7 @@
 
 <body>
 	<!-- WRAPPER -->
-  <div id="app" class="wrapper">
+  <div id="wrapper">
 	   <% include ./navbar %>
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
@@ -42,177 +42,67 @@
             <transition name="component-fade" mode="out-in">
               <router-view></router-view>
             </transition>
-
   				</div>
   			</div>
   			<!-- END MAIN CONTENT -->
   		</div>
-      <template id="index-template">
-        <div class="">
-          <% include stats %>
-        </div>
-      </template>
-
-      <template id="projects-template">
-        <div class="">
-          <% include projects %>
-        </div>
-      </template>
-
-      <template id="subscriptions-template">
-        <div class="">
-          <% include subscriptions %>
-        </div>
-      </template>
-
-			<template id="list-projects-template">
-				<div class="">
-					<% include projects/list_project %>
-				</div>
-			</template>
-
-			<template id="add-projects-template">
-				<div class="">
-					<% include projects/add_project %>
-				</div>
-			</template>
-
-			<template id="edit-projects-template">
-				<div class="">
-					<% include projects/edit_project %>
-				</div>
-			</template>
-
     </div>
+
+
+
+		<% include ./stats %>
+		<% include ./projects %>
+		<% include ./projects/list_project %>
+		<% include ./projects/add_project %>
+		<% include ./projects/edit_project %>
+		<% include ./subscriptions %>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<% include ./footer %>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
+	<style media="screen">
+    .component-fade-enter-active, .component-fade-leave-active {
+    transition: opacity .2s ease;
+    }
+    .component-fade-enter, .component-fade-leave-to
+    /* .component-fade-leave-active for <2.1.8 */ {
+    opacity: 0;
+    }
+    .has-placeholder {
+      filter: none;
+      transition: all 200ms;
+      background-color: transparent;
+    }
+
+    .has-placeholder:empty {
+      width: 5vw;
+      height: 20px;
+      background-color: rgba(0, 0, 0, 0.2);
+      filter: blur(7px);
+    }
+  </style>
+
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
-	<script>
-	$(function() {
-		var data, options;
+	<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+	<script src="https://cdn.jsdelivr.net/vue2-filters/0.1.9/vue2-filters.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
 
-		// headline charts
-		data = {
-			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-			series: [
-				[23, 29, 24, 40, 25, 24, 35],
-				[14, 25, 18, 34, 29, 38, 44],
-			]
-		};
+	<script src="./app/index/index.js"></script>
+	<script src="./app/projects/add_project.js"></script>
+	<script src="./app/projects/edit_project.js"></script>
+	<script src="./app/projects/list_projects.js"></script>
+	<script src="./app/projects/projects.js"></script>
+	<script src="./app/subscriptions/subscriptions.js"></script>
 
-		options = {
-			height: 300,
-			showArea: true,
-			showLine: false,
-			showPoint: false,
-			fullWidth: true,
-			axisX: {
-				showGrid: false
-			},
-			lineSmooth: false,
-		};
-
-		new Chartist.Line('#headline-chart', data, options);
-
-
-		// visits trend charts
-		data = {
-			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-			series: [{
-				name: 'series-real',
-				data: [200, 380, 350, 320, 410, 450, 570, 400, 555, 620, 750, 900],
-			}, {
-				name: 'series-projection',
-				data: [240, 350, 360, 380, 400, 450, 480, 523, 555, 600, 700, 800],
-			}]
-		};
-
-		options = {
-			fullWidth: true,
-			lineSmooth: false,
-			height: "270px",
-			low: 0,
-			high: 'auto',
-			series: {
-				'series-projection': {
-					showArea: true,
-					showPoint: false,
-					showLine: false
-				},
-			},
-			axisX: {
-				showGrid: false,
-
-			},
-			axisY: {
-				showGrid: false,
-				onlyInteger: true,
-				offset: 0,
-			},
-			chartPadding: {
-				left: 20,
-				right: 20
-			}
-		};
-
-		new Chartist.Line('#visits-trends-chart', data, options);
-
-
-		// visits chart
-		data = {
-			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-			series: [
-				[6384, 6342, 5437, 2764, 3958, 5068, 7654]
-			]
-		};
-
-		options = {
-			height: 300,
-			axisX: {
-				showGrid: false
-			},
-		};
-
-		new Chartist.Bar('#visits-chart', data, options);
-
-
-		// real-time pie chart
-		var sysLoad = $('#system-load').easyPieChart({
-			size: 130,
-			barColor: function(percent) {
-				return "rgb(" + Math.round(200 * percent / 100) + ", " + Math.round(200 * (1.1 - percent / 100)) + ", 0)";
-			},
-			trackColor: 'rgba(245, 245, 245, 0.8)',
-			scaleColor: false,
-			lineWidth: 5,
-			lineCap: "square",
-			animate: 800
-		});
-
-		var updateInterval = 3000; // in milliseconds
-
-		setInterval(function() {
-			var randomVal;
-			randomVal = getRandomInt(0, 100);
-
-			sysLoad.data('easyPieChart').update(randomVal);
-			sysLoad.find('.percent').text(randomVal);
-		}, updateInterval);
-
-		function getRandomInt(min, max) {
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
-
-	});
-	</script>
+	<script src="./app/app.js"></script>
 </body>
 
 </html>

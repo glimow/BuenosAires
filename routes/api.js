@@ -83,6 +83,18 @@ router.get('/projects', function(req, res, next) {
   });
 });
 
+/* GET a project  */
+router.get('/projects/:id', function(req, res, next) {
+  projects.findOne({_id:req.params.id}).exec(function (err, project) {
+    if (err) {
+      res.json({state:"error", err:err});
+      console.log(err);
+    } else {
+      res.json(project);
+    }
+  });
+});
+
 //POST a new project
 router.post('/projects', function(req, res, next) {
   projects.create(req.body, function (err, project) {

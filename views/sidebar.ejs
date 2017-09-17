@@ -1,13 +1,13 @@
 <nav>
   <ul class="nav">
-    <li>
-      <a href="/dashboard" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
-    </li>
-    <li>
-      <a href="/projets" class="active"><i class="lnr lnr-code"></i> <span>Projets</span></a>
-    </li>
-    <li>
-      <a href="/abonnements" class=""><i class="lnr lnr-chart-bars"></i> <span>Inscriptions</span></a>
-    </li>
+    <router-link tag="li" to="/index">
+      <a><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
+    </router-link>
+    <router-link tag="li" to="/projets">
+      <a><i class="lnr lnr-code"></i> <span>Projets</span></a>
+    </router-link>
+    <router-link tag="li" to="/abonnements">
+      <a><i class="lnr lnr-chart-bars"></i> <span>Inscriptions</span></a>
+    </router-link>
   </ul>
 </nav>

@@ -9,8 +9,8 @@ const routes = [
   { path: '/projets', component: projects,
     children: [
       {path:"/", component: list_projects},
-      {path:":id/edit", component: edit_project }
-      {path:"/add", component: add_project }
+      {path:"add", component: add_project },
+      {path:"edit/:id", component: edit_project},
     ],
   },
   { path: '/abonnements', component: subscriptions },
@@ -28,8 +28,16 @@ const router = new VueRouter({
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
 const app = new Vue({
-  router
-}).$mount('#app');
+  router:router,
+  http: {
+   root: 'http://localhost:3000/api/v1',
+   headers: {
+     authorization: 'authentication-QWxhZGRpbjpvcGVuIHNlc2FtZQ'
+   },
+   emulateJSON: true,
+   emulateHTTP: true
+},
+}).$mount('#wrapper');
 
 // app.components.diseases.getDiseases();
 // Now the app has started!
